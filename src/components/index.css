@@ -38,7 +38,7 @@ li{
     border-radius: 4px;
     gap: 10px;
     background-color:  #ECECEC;
-margin: 20px;
+    margin: 20px;
     display: flex;
    font-family: "Montserrat";
    justify-content: flex-start;
@@ -165,10 +165,10 @@ align-items: center;
     letter-spacing: 0em;
   text-align: center;
   color:  #000000;
-  ;
+
     
     
 }
 .selected{
-    background-color: lightblue;
+    background-color: #716f6f;
 }

@@ -4,40 +4,52 @@ import "./index.css"
 function Fetchdata(){
     const [data,setData]=useState([])
     const [selectedUser, setSelectedUser] = useState(null);
+    const [loading, setLoading] = useState(true); 
+    const [selectedUserId, setSelectedUserId] = useState(null);
 
     
-    useEffect(()=>{
-        axios.get("https://602e7c2c4410730017c50b9d.mockapi.io/users ")
-        .then(res=>setData(res.data))
-       
-        .catch(err=>console.log("Not Data Found"))
 
-    },[])
+    useEffect(() => {
+        axios.get("https://602e7c2c4410730017c50b9d.mockapi.io/users")
+          .then((res) => {
+            setData(res.data);
+            setLoading(false); 
+          })
+          .catch((err) => {
+            console.log("No Data Found");
+            setLoading(false); 
+          });
+      }, []);
+    
  
 
     
     const handleUserClick = (user) => {
         setSelectedUser(user);
-       
-      
+        setSelectedUserId(user.id)
       };
+
+      return (
+        <>
+        
+        <div className='first-container'>
+        
+            <div className='container1' >
+           
+            <ul className='un-list'>
+                <div className='title-container'>
+            <h5>Users List</h5>
     
-   
-  return (
-    <>
+            </div>
+            <div className='user-list'>
     
-    <div className='first-container'>
-    
-        <div className=' container1' >
-       
-        <ul className='un-list'>
-            <div className='title-container'>
-        <h5>Users List</h5>
-        </div>
-        <div className='user-list'>
-       
+           
+            {loading ? ( 
+                    <div class="spinner-border" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>) : null}
    {data.map((user,index) => (
-                    <div className='list-container' onClick={() => handleUserClick(user)}>
+       <div   className= "list-container"  onClick={() => handleUserClick(user)} >
                         <img src={user.avatar} alt="avatar" className='image1'/>
                      <li key={index}>
                          {user.profile.firstName +" "+user.profile.lastName}
@@ -47,9 +59,7 @@ function Fetchdata(){
                     
                     </div>
                 ))}
-                     <div class="spinner-border" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>
+        
        
                 </div>
            
@@ -64,8 +74,7 @@ function Fetchdata(){
 
 
 
-      
-        <div className='detiils-container'>
+           <div className='detiils-container'>
         <div className='title-container'>
         <h5>User Details</h5>
         </div>
@@ -108,4 +117,4 @@ function Fetchdata(){
   )
 }
 
-export default Fetchdata
+export default Fetchdata

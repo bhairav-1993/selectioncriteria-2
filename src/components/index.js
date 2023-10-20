@@ -5,7 +5,7 @@ function Fetchdata(){
     const [data,setData]=useState([])
     const [selectedUser, setSelectedUser] = useState(null);
     const [loading, setLoading] = useState(true); 
-    const [selectedUserId, setSelectedUserId] = useState(null);
+  
 
     
 
@@ -26,7 +26,7 @@ function Fetchdata(){
     
     const handleUserClick = (user) => {
         setSelectedUser(user);
-        setSelectedUserId(user.id)
+        
       };
 
       return (
@@ -49,44 +49,37 @@ function Fetchdata(){
                       <span class="visually-hidden">Loading...</span>
                     </div>) : null}
    {data.map((user,index) => (
+ 
        <div   className= "list-container"  onClick={() => handleUserClick(user)} >
                         <img src={user.avatar} alt="avatar" className='image1'/>
                      <li key={index}>
                          {user.profile.firstName +" "+user.profile.lastName}
                          
-                  
+
                     </li>
-                    
+
                     </div>
+
                 ))}
-        
-       
-                </div>
-           
-                
-        </ul>
-      
-        </div>
-        
 
+                </div> 
 
+            </ul>
 
-
-
+            </div>
 
            <div className='detiils-container'>
-        <div className='title-container'>
-        <h5>User Details</h5>
-        </div>
+             <div className='title-container'>
+                <h5>User Details</h5>
+             </div>
         
         {selectedUser && (
-        <div className='info-container1'> 
-          <div>
-          <img src={selectedUser.avatar} alt='No data to show' className='images'/>
-          <h2 className='userName'>{selectedUser.profile.username}</h2>
-          </div>
+           <div className='info-container1'> <div>
+             <img src={selectedUser.avatar} alt='No data to show' className='images'/>
+              <h2 className='userName'>{selectedUser.profile.username}</h2>
+           </div>
           <div className='bio-container'>
-            <p>{selectedUser.Bio}</p>
+             <p>{selectedUser.Bio}</p>
             </div>
 
             <div className='form-container'>
@@ -111,8 +104,7 @@ function Fetchdata(){
       
       </div>
      
-
-    </div>
+      </div>
     </>
   )
 }
